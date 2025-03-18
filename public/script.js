@@ -1,21 +1,15 @@
-async function generateQR() {
-    const text = document.getElementById("text").value;
-    if (!text) {
-        alert("Please enter some text!");
-        return;
-    }
+const backendURL = "https://your-app-name.up.railway.app"; // Replace with actual URL
 
-    const response = await fetch("/generate", {
+async function generateQRCode() {
+    const text = document.getElementById("text").value;
+    if (!text) return alert("Please enter text");
+
+    const response = await fetch(`${backendURL}/generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
     });
 
     const data = await response.json();
-    const qrImage = document.getElementById("qrCode");
-
-    if (data.qrCode) {
-        qrImage.src = data.qrCode;
-        qrImage.classList.remove("hidden");
-    }
+    document.getElementById("qr-code").src = data.qrCode;
 }
