@@ -1,4 +1,4 @@
-const backendURL = "https://your-app-name.up.railway.app"; // Replace with actual URL
+const backendURL = "https://qrgen-production.up.railway.app"; // Replace with actual URL
 
 async function generateQRCode() {
     const text = document.getElementById("text").value;
