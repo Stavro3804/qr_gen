@@ -1,15 +1,22 @@
-const backendURL = "https://qrgen-production.up.railway.app"; // Replace with actual URL
+async function generateQR() {
+    const inputText = document.getElementById("inputText").value;
+    if (!inputText) {
+        alert("Please enter text to generate QR Code");
+        return;
+    }
 
-async function generateQRCode() {
-    const text = document.getElementById("text").value;
-    if (!text) return alert("Please enter text");
-
-    const response = await fetch(`${backendURL}/generate`, {
+    const response = await fetch("https://qrgen-production.up.railway.app/generate", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text }),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ text: inputText })
     });
 
     const data = await response.json();
-    document.getElementById("qr-code").src = data.qrCode;
+    if (data.qrCode) {
+        document.getElementById("qrImage").src = data.qrCode;
+    } else {
+        alert("Failed to generate QR Code");
+    }
 }
