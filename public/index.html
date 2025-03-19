@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Generator</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: {} } };
+    </script>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
 
@@ -17,7 +20,7 @@
             Generate QR Code
         </button>
         <div class="mt-4">
-            <img id="qrCode" class="mx-auto mt-4 hidden">
+            <img id="qrCode" class="mx-auto mt-4 hidden" alt="Generated QR Code">
         </div>
     </div>
 

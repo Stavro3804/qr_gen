@@ -1,6 +1,6 @@
 async function generateQR() {
     const inputText = document.getElementById("inputText").value;
-    if (!inputText) {
+    if (!inputText.trim()) {
         alert("Please enter text to generate QR Code");
         return;
     }
@@ -15,7 +15,9 @@ async function generateQR() {
 
     const data = await response.json();
     if (data.qrCode) {
-        document.getElementById("qrImage").src = data.qrCode;
+        const qrImage = document.getElementById("qrCode");
+        qrImage.src = data.qrCode;
+        qrImage.classList.remove("hidden"); // Make the image visible
     } else {
         alert("Failed to generate QR Code");
     }

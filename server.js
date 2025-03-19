@@ -13,10 +13,7 @@ app.use(express.static("public"));
 
 app.use(
   cors({
-    origin: [
-      "https://qr-wizard.netlify.app", // Frontend URL
-      "https://qrgen-production.up.railway.app", // Backend URL
-    ],
+    origin: "*", // Allow all origins (for testing)
     methods: ["GET", "POST"],
     credentials: true,
   })
@@ -25,7 +22,7 @@ app.use(
 app.post("/generate", async (req, res) => {
   try {
     const { text } = req.body;
-    if (!text.trim()) {
+    if (!text || text.trim().length === 0) {
       return res.status(400).json({ error: "Text is required to generate QR code" });
     }
 
