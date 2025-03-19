@@ -13,9 +13,9 @@ app.use(express.static("public"));
 
 app.use(
   cors({
-    origin: "*", // Allow all origins (for testing)
+    origin: "https://qr-wizard.netlify.app", // Explicitly allow your frontend
     methods: ["GET", "POST"],
-    credentials: true,
+    allowedHeaders: ["Content-Type"],
   })
 );
 
