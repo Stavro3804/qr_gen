@@ -1,9 +1,9 @@
-const express = require("express");
-const QRCode = require("qrcode");
-const cors = require("cors");
+import express from "express";
+import QRCode from "qrcode";
+import cors from "cors";
 
 const app = express();
-app.use(cors()); // Allow frontend requests
+app.use(cors());
 
 app.get("/generate", async (req, res) => {
     const { q } = req.query;
