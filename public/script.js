@@ -1,24 +1,25 @@
+const backendUrl = "https://your-backend.up.railway.app";
+
 async function generateQR() {
-    const inputText = document.getElementById("inputText").value;
-    if (!inputText.trim()) {
-        alert("Please enter text to generate QR Code");
+    const url = document.getElementById("urlInput").value;
+    if (!url) {
+        alert("Please enter a valid URL");
         return;
     }
 
-    const response = await fetch("https://qrgen-production.up.railway.app/generate", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ text: inputText })
-    });
+    try {
+        const response = await fetch(`${backendUrl}/generate?q=${encodeURIComponent(url)}`);
+        const data = await response.json();
 
-    const data = await response.json();
-    if (data.qrCode) {
-        const qrImage = document.getElementById("qrCode");
-        qrImage.src = data.qrCode;
-        qrImage.classList.remove("hidden"); // Make the image visible
-    } else {
-        alert("Failed to generate QR Code");
+        if (data.qr_code) {
+            document.getElementById("qrCodeContainer").innerHTML = `
+                <img src="${data.qr_code}" alt="QR Code" class="mt-4 mx-auto">
+            `;
+        } else {
+            alert("Failed to generate QR code");
+        }
+    } catch (error) {
+        console.error("Error generating QR code:", error);
+        alert("Error connecting to the server");
     }
 }

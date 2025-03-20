@@ -5,23 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Generator</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = { theme: { extend: {} } };
-    </script>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+<body class="bg-gray-100 flex items-center justify-center h-screen">
 
-    <div class="bg-white p-6 rounded-lg shadow-md w-96 text-center">
-        <h2 class="text-2xl font-bold mb-4">QR Code Generator</h2>
-        <input type="text" id="inputText" placeholder="Enter text or URL" 
-            class="w-full p-2 border border-gray-300 rounded-md mb-4">
-        <button onclick="generateQR()" 
-            class="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
+        <h1 class="text-2xl font-bold mb-4">QR Code Generator</h1>
+        <input type="text" id="urlInput" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter URL">
+        <button onclick="generateQR()" class="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md w-full">
             Generate QR Code
         </button>
-        <div class="mt-4">
-            <img id="qrCode" class="mx-auto mt-4 hidden" alt="Generated QR Code">
-        </div>
+        <div id="qrCodeContainer" class="mt-4"></div>
     </div>
 
     <script src="script.js"></script>
